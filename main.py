@@ -30,17 +30,17 @@ class ProbabilityDistribution:
         return round(sum([i * j for i, j in zip(self.x, self.Pofx)]), 2) # μ
     
     def variance(self):
-        mean = round(sum([i * j for i, j in zip(self.x, self.Pofx)]), 2)
-        xMinusMean = [i - mean for i in self.x] # x - μ
-        xMinusMeanSquared = [i * i for i in xMinusMean] # (x - μ)^2
-        xMinusMeanSquaredTimesPofx = [i * j for i,j in zip(xMinusMeanSquared, self.Pofx)] # (x - μ)^2 ⋅ P(x)
+        mean = round(sum([round(i * j, 4) for i, j in zip(self.x, self.Pofx)]), 2)
+        xMinusMean = [round(i - mean, 4) for i in self.x] # x - μ
+        xMinusMeanSquared = [round(i * i, 4) for i in xMinusMean] # (x - μ)^2
+        xMinusMeanSquaredTimesPofx = [round(i * j, 4) for i,j in zip(xMinusMeanSquared, self.Pofx)] # (x - μ)^2 ⋅ P(x)
         return round(sum(xMinusMeanSquaredTimesPofx), 2) # σ^2
     
     def standardDeviation(self):
-        mean = round(sum([i * j for i, j in zip(self.x, self.Pofx)]), 2)
-        xMinusMean = [i - mean for i in self.x] # x - μ
-        xMinusMeanSquared = [i * i for i in xMinusMean] # (x - μ)^2
-        xMinusMeanSquaredTimesPofx = [i * j for i,j in zip(xMinusMeanSquared, self.Pofx)] # (x - μ)^2 ⋅ P(x)
+        mean = round(sum([round(i * j, 4) for i, j in zip(self.x, self.Pofx)]), 2)
+        xMinusMean = [round(i - mean, 4) for i in self.x] # x - μ
+        xMinusMeanSquared = [round(i * i, 4) for i in xMinusMean] # (x - μ)^2
+        xMinusMeanSquaredTimesPofx = [round(i * j, 4) for i,j in zip(xMinusMeanSquared, self.Pofx)] # (x - μ)^2 ⋅ P(x)
         variance = round(sum(xMinusMeanSquaredTimesPofx), 2) # σ^2
         return round(variance ** .5, 2) # σ
     
