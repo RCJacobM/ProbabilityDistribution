@@ -19,7 +19,8 @@ class ProbabilityDistribution:
 
     Standard Deviation:
     table.standardDeviation() | Expected output: 6.54
-    
+
+    the all() function returns a string with every calculations 
     """
     def __init__(self, data):
         self.x = list(data.keys())
@@ -42,3 +43,21 @@ class ProbabilityDistribution:
         xMinusMeanSquaredTimesPofx = [i * j for i,j in zip(xMinusMeanSquared, self.Pofx)] # (x - μ)^2 ⋅ P(x)
         variance = round(sum(xMinusMeanSquaredTimesPofx), 2) # σ^2
         return round(variance ** .5, 2) # σ
+    
+    def all(self):
+        mean = round(sum([round(i * j, 4) for i, j in zip(self.x, self.Pofx)]), 2)
+        xMinusMean = [round(i - mean, 4) for i in self.x] # x - μ
+        xMinusMeanSquared = [round(i * i, 4) for i in xMinusMean] # (x - μ)^2
+        xMinusMeanSquaredTimesPofx = [round(i * j, 4) for i,j in zip(xMinusMeanSquared, self.Pofx)] # (x - μ)^2 ⋅ P(x)
+        variance = round(sum(xMinusMeanSquaredTimesPofx), 2) # σ^2
+        standardDeviation =  round(variance ** .5, 2) # σ
+
+        return f"""
+        x - μ: {xMinusMean}
+        (x - μ)^2 : {xMinusMeanSquared}
+        (x - μ)^2 ⋅ P(x): {xMinusMeanSquaredTimesPofx}
+
+        Mean = {mean}
+        Variance = {variance}
+        Standard Deviation = {standardDeviation}
+        """
